@@ -1,18 +1,13 @@
-import React, {Component, useState} from 'react';
+import React, {useState} from 'react';
 import {
-  AppRegistry,
   Button,
   StyleSheet,
-  NativeModules,
-  Platform,
   Text,
   View,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
-
-import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import RNPrint from 'react-native-print';
 
 export default function Printer() {
@@ -21,12 +16,7 @@ export default function Printer() {
   console.log('singleFile', singleFile[0]?.uri);
 
   const printRemotePDF = async url => {
-    const results = await RNHTMLtoPDF.convert({
-      html: '<h1>Custom converted PDF Document</h1>',
-      fileName: 'test',
-      base64: true,
-    });
-    console.log('results.filePath', url.split('file:')[1], results.filePath);
+    console.log('results.filePath', url.split('file:')[1]);
     await RNPrint.print({filePath: url.split('file:')[1]});
   };
 
